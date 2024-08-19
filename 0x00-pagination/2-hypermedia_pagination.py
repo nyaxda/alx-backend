@@ -2,8 +2,8 @@
 """pagination module"""
 from typing import List, Dict, Any
 import csv
-index_range = __import__('0-simple_helper_function').index_range
 import math
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
@@ -39,12 +39,13 @@ class Server:
         return dataset[start_index:end_index]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
-        dataset = self.dataset()
+        page_data = self.get_page(page, page_size)
+        page_size = len(page_data)
         total_pages = math.ceil(len(self.dataset()) / page_size)
         hyper_data = {
             "page_size": f"{page_size}",
             "page": f"{page}",
-            "data": f"{self.get_page(page, page_size)}",
+            "data": f"{page_data}",
             "next_page": f"{page + 1}" if page < total_pages else None,
             "prev_pages": f"{page - 1}" if page > 1 else None,
             "total_pages": f"{total_pages}"
