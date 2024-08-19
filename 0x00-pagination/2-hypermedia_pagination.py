@@ -3,6 +3,7 @@
 from typing import List, Dict, Any
 import csv
 index_range = __import__('0-simple_helper_function').index_range
+import math
 
 
 class Server:
@@ -39,7 +40,7 @@ class Server:
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         dataset = self.dataset()
-        total_pages = (len(dataset) + page_size - 1) // page_size
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         hyper_data = {
             "page_size": f"{page_size}",
             "page": f"{page}",
