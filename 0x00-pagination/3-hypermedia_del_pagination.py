@@ -43,7 +43,7 @@ class Server:
                         index: Optional[int] = None,
                         page_size: int = 10) -> Dict:
         dataset = self.indexed_dataset()
-        assert index is not None and 0 <= index < len(dataset)
+        assert index is not None and 0 < index < len(dataset)
 
         data: List[List] = []
         current_index = index
