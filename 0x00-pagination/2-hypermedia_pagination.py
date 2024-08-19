@@ -43,12 +43,12 @@ class Server:
         page_size = len(page_data)
         total_pages = math.ceil(len(self.dataset()) / page_size)
         hyper_data = {
-            "page_size": f"{page_size}",
-            "page": f"{page}",
-            "data": f"{page_data}",
-            "next_page": f"{page + 1}" if page < total_pages else None,
-            "prev_pages": f"{page - 1}" if page > 1 else None,
-            "total_pages": f"{total_pages}"
+            "page_size": page_size,
+            "page": page,
+            "data": page_data,
+            "next_page": page + 1 if page < total_pages else None,
+            "prev_pages": page - 1 if page > 1 else None,
+            "total_pages": total_pages
         }
 
         return hyper_data
