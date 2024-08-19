@@ -43,8 +43,9 @@ class Server:
                         index: Optional[int] = None,
                         page_size: int = 10) -> Dict:
         dataset = self.indexed_dataset()
-        assert index is not None and 0 < index < len(dataset)
-
+        if index is None:
+            index = 0
+        assert 0 <= index < len(dataset)
         data: List[List] = []
         current_index = index
         while len(data) < page_size and current_index < len(dataset):
