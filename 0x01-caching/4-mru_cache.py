@@ -15,12 +15,12 @@ class MRUCache(BaseCaching):
         """method for adding an item in the cache"""
         if key is None or item is None:
             return
+        if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+            discarded_key, _ = self.cache_data.popitem(False)
+            print("DISCARD: {}".format(discarded_key))
         if key in self.cache_data:
             self.cache_data.move_to_end(key)
         self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            discarded_key, _ = self.cache_data.popitem(last=True)
-            print("DISCARD: {}".format(discarded_key))
 
     def get(self, key):
         """method for accessing values of a key"""
